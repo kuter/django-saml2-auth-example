@@ -126,7 +126,7 @@ STATIC_URL = '/static/'
 
 SAML2_AUTH = {
     # Metadata is required, choose either remote url or local file path
-    'METADATA_AUTO_CONF_URL': 'http://localhost:8080/simplesaml/saml2/idp/metadata.php',
+    'METADATA_AUTO_CONF_URL': 'http://idp:8080/simplesaml/saml2/idp/metadata.php',
     # 'METADATA_LOCAL_FILE_PATH': '[The metadata configuration file path]',
 
     # Optional settings below

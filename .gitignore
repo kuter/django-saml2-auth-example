@@ -115,3 +115,5 @@ yarn.lock
 webpack-*.json
 
 static/
+
+project/local.py

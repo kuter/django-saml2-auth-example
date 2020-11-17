@@ -1,0 +1,3 @@
+Django==2.2.17
+django-saml2-auth==2.2.1
+psycopg2-binary>=2.8
