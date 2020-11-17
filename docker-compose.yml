@@ -1,0 +1,29 @@
+version: "3.8"
+   
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  idp:
+    image: kristophjunge/test-saml-idp
+    environment:
+      - SIMPLESAMLPHP_SP_ENTITY_ID=http://app.example.com
+      - SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE=http://localhost:8000/accounts/logout/
+      - SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE=http://localhost:8000/saml2_auth/acs/
+    volumes:
+      - ./test_saml_idp/users.php:/var/www/simplesamlphp/config/authsources.php
+    ports:
+      - "8080:8080"
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
