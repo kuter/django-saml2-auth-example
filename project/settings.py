@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_saml2_auth',
+    'posts',
 ]
 
 MIDDLEWARE = [
@@ -76,12 +77,8 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -126,8 +123,7 @@ STATIC_URL = '/static/'
 
 SAML2_AUTH = {
     # Metadata is required, choose either remote url or local file path
-    'METADATA_AUTO_CONF_URL': 'http://idp:8080/simplesaml/saml2/idp/metadata.php',
-    # 'METADATA_LOCAL_FILE_PATH': '[The metadata configuration file path]',
+    'METADATA_AUTO_CONF_URL': 'http://localhost:8080/simplesaml/saml2/idp/metadata.php',
 
     # Optional settings below
     'DEFAULT_NEXT_URL': '/admin',  # Custom target redirect URL after the user get logged in. Default to /admin if not set. This setting will be overwritten if you have parameter ?next= specificed in the login URL.

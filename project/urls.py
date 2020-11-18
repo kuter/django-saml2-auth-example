@@ -33,4 +33,5 @@ urlpatterns = [
     # with this view.
     # path('admin/login/', django_saml2_auth_views.signin),
     path('admin/', admin.site.urls),
+    path('', include("posts.urls"))
 ]
